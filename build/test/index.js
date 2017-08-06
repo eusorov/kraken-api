@@ -1,5 +1,6 @@
 "use strict";
-var KrakenClient = require('../kraken');
+Object.defineProperty(exports, "__esModule", { value: true });
+var KrakenClient = require("../kraken");
 var kraken = new KrakenClient('', '');
 kraken.api('Ticker', { "pair": 'XXBTZEUR' }, function (error, data) {
     if (error) {

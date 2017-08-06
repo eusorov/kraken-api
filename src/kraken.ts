@@ -6,20 +6,19 @@ import * as querystring from 'query-string';
  * KrakenClient connects to the Kraken.com API
  * @param {String} key    API Key
  * @param {String} secret API Secret
- * @param {String} [otp]  Two-factor password (optional) (also, doesn't work)
+ * @param {Number} [timeoutMS]  MS timeout for requests (optional)
  */
 class KrakenClient {
 
 	private config: any;
 
-	constructor(key = '', secret = '', otp?: string) {
+	constructor(key = '', secret = '', timeoutMS: Number = 10000) {
 		this.config = {
 				url: 'https://api.kraken.com',
 				version: '0',
 				key: key,
 				secret: secret,
-				otp: otp,
-				timeoutMS: 5000
+				timeoutMS: timeoutMS
 			};
 	}
 
@@ -76,10 +75,6 @@ class KrakenClient {
 		var url		= this.config.url + path;
 
 		params.nonce = +new Date() * 1000; // spoof microsecond
-
-		if(this.config.otp !== undefined) {
-			params.otp = this.config.otp;
-		}
 
 		var signature = this.getMessageSignature(path, params, params.nonce);
 

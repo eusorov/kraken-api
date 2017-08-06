@@ -1,18 +1,18 @@
 "use strict";
-var request = require('request');
-var crypto = require('crypto');
-var querystring = require('query-string');
+var request = require("request");
+var crypto = require("crypto");
+var querystring = require("query-string");
 var KrakenClient = (function () {
-    function KrakenClient(key, secret, otp) {
+    function KrakenClient(key, secret, timeoutMS) {
         if (key === void 0) { key = ''; }
         if (secret === void 0) { secret = ''; }
+        if (timeoutMS === void 0) { timeoutMS = 10000; }
         this.config = {
             url: 'https://api.kraken.com',
             version: '0',
             key: key,
             secret: secret,
-            otp: otp,
-            timeoutMS: 5000
+            timeoutMS: timeoutMS
         };
     }
     KrakenClient.prototype.api = function (method, params, callback) {
@@ -41,9 +41,6 @@ var KrakenClient = (function () {
         var path = '/' + this.config.version + '/private/' + method;
         var url = this.config.url + path;
         params.nonce = +new Date() * 1000;
-        if (this.config.otp !== undefined) {
-            params.otp = this.config.otp;
-        }
         var signature = this.getMessageSignature(path, params, params.nonce);
         var headers = {
             'API-Key': this.config.key,
