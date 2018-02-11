@@ -1,6 +1,6 @@
 {
   "name": "kraken-exchange-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "engines": {
     "node": ">=6.4.0"
   },
@@ -12,16 +12,18 @@
     "kraken.d.ts"
   ],
   "dependencies": {
-    "query-string": ">=5.0.0",
+    "qs": ">=6.5.1",
     "request": ">=2.81.0"
   },
   "devDependencies": {
+    "@types/qs": ">=6.5.1",
     "@types/node": "^6.0.58",
-    "@types/query-string": "^5.0.0",
-    "@types/request": "2.0.0"
+    "@types/request": "2.0.0",
+    "typescript": ">=2.7.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc"
   },
   "keywords": [
     "kraken",

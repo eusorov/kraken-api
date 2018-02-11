@@ -1,6 +1,6 @@
 import * as request from 'request';
 import * as crypto from 'crypto';
-import * as querystring from 'query-string';
+import * as querystring from 'qs';
 
 /**
  * KrakenClient connects to the Kraken.com API
