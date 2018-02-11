@@ -1,7 +1,7 @@
 "use strict";
 var request = require("request");
 var crypto = require("crypto");
-var querystring = require("query-string");
+var querystring = require("qs");
 var KrakenClient = (function () {
     function KrakenClient(key, secret, timeoutMS) {
         if (key === void 0) { key = ''; }
